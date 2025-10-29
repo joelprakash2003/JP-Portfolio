@@ -14,8 +14,11 @@ const index = () => {
           <div className="lg:flex grid grid-cols-1 sm:grid-cols-2 gap-7 md:gap-4 items-center">
             <div className="flex flex-col gap-4 md:gap-7 max-w-2xl">
               <div>
-                <div className="flex items-center gap-8 mb-4">
-                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl xl:text-6xl">Hey, I'm Joel Prakash <span className="wave">👋</span></h1>
+                <div className="flex flex-col gap-4 mb-6">
+                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl xl:text-6xl leading-tight">
+                    <span className="block">Hey,</span>
+                    <span className="block">I'm Joel Prakash <span className="wave">👋</span></span>
+                  </h1>
                 </div>
                 <h2 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl text-white font-light mb-6">Aspiring Cybersecurity Analyst | Frontend Developer</h2>
               </div>

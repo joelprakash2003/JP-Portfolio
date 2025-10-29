@@ -40,7 +40,7 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
           </div>
           <div className="flex items-center gap-3">
             <a
-              href="/resume.pdf"
+              href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/resume.pdf`}
               download="Joel-Prakash-Resume.pdf"
               className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors shadow-md"
             >
@@ -58,18 +58,18 @@ const ResumeModal = ({ isOpen, onClose }: ResumeModalProps) => {
 
         {/* PDF Content */}
         <div className="p-6 bg-gray-50">
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            {/* PDF Viewer */}
-            <div className="h-[60vh] overflow-auto">
-              <iframe
-                src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
-                width="100%"
-                height="100%"
-                className="border-0"
-                title="Joel Prakash Resume"
-              />
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              {/* PDF Viewer */}
+              <div className="h-[60vh] overflow-auto">
+                <iframe
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/resume.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+                  width="100%"
+                  height="100%"
+                  className="border-0"
+                  title="Joel Prakash Resume"
+                />
+              </div>
             </div>
-          </div>
         </div>
 
         {/* Footer */}
