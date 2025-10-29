@@ -5,7 +5,7 @@ import { getImgPath } from "@/utils/image";
 
 const Logo = () => {
   return (
-      <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4">
       <Link href="/">
         <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-all cursor-pointer hover:scale-105">
           <Image
