@@ -3,19 +3,21 @@ import "./globals.css";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 
+const basePath = process.env.NODE_ENV === "production" ? "/JP-Portfolio" : "";
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://joelprakash.github.io'),
+  metadataBase: new URL('https://joelprakash2003.github.io'),
   title: "Joel Prakash — Portfolio",
   description: "Joel Prakash — Aspiring Cybersecurity Analyst & Frontend Developer. Portfolio showcasing projects, internships, and resume.",
   icons: {
-    icon: '/favicon.png',
-    apple: '/apple-touch-icon.png',
+    icon: `${basePath}/favicon.png`,
+    apple: `${basePath}/apple-touch-icon.png`,
   },
   openGraph: {
     title: "Joel Prakash — Portfolio",
     description: "Cybersecurity, Systems Administration, and Frontend Projects.",
-    images: ['/social-preview.png'],
-    url: 'https://joelprakash.github.io',
+    images: [`${basePath}/social-preview.png`],
+    url: 'https://joelprakash2003.github.io/JP-Portfolio',
     siteName: 'Joel Prakash',
   },
 };
