@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
+import FontLoader from "./components/font-loader";
 
 const basePath = process.env.NODE_ENV === "production" ? "/JP-Portfolio" : "";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-cereal" suppressHydrationWarning>
+        <FontLoader />
         <Header />
         {children}
         <Footer/>
