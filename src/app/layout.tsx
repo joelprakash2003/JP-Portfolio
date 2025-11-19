@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   description: "Joel Prakash — Aspiring Cybersecurity Analyst & Frontend Developer. Portfolio showcasing projects, internships, and resume.",
   referrer: "strict-origin-when-cross-origin",
   icons: {
-    icon: `${basePath}/favicon.png`,
+    icon: `${basePath}/favicon.ico`,
     apple: `${basePath}/apple-touch-icon.png`,
   },
   openGraph: {
