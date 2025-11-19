@@ -50,9 +50,8 @@
 
 8. **Contact Section**
    - Contact form (Formspree integration)
-   - Email: joelprakash90@gmail.com
-   - Phone: (469) 257-5506
-   - Social links: LinkedIn, GitHub
+   - Sensitive fields (email, phone) supplied through `NEXT_PUBLIC_CONTACT_*` env vars
+   - Social links: LinkedIn, GitHub (env-driven)
    - Success message on form submission
 
 9. **SEO & Metadata**
@@ -103,11 +102,9 @@ Resume-Nextjs-1.0.0/
 
 ### 🔗 Links Updated
 
-- Email: joelprakash90@gmail.com
-- Phone: +1 (469) 257-5506
-- LinkedIn: linkedin.com/in/joelprakash-
-- GitHub: github.com/joelprakash
-- All links are now functional and open in new tabs
+- Email, phone, and all social URLs now read from environment variables
+- Public repository no longer hardcodes personal contact details
+- All rendered links still open in new tabs
 
 ### 🚀 Deployment Ready
 

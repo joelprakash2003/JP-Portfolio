@@ -2,7 +2,21 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
-import FontLoader from "./components/font-loader";
+import { Instrument_Sans, Space_Grotesk } from "next/font/google";
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 const basePath = process.env.NODE_ENV === "production" ? "/JP-Portfolio" : "";
 
@@ -53,7 +67,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#1c1339',
+  themeColor: '#fdf8f3',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({
@@ -63,8 +82,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-cereal" suppressHydrationWarning>
-        <FontLoader />
+      <body
+        className={`${instrumentSans.variable} ${spaceGrotesk.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <Header />
         {children}
         <Footer/>

@@ -20,9 +20,8 @@ npm run build
 - ✅ `/src/app/page.tsx` - Main page with all sections
 - ✅ `/src/app/layout.tsx` - Metadata and SEO
 - ✅ `/src/app/globals.css` - Dark blue theme (#1c1339)
-- ✅ `/public/data/page-data.json` - Joel's contact info and education
-- ✅ `/public/data/work-data.json` - Joel's projects
-- ✅ `/public/resume.pdf` - Joel's resume PDF
+- ✅ `/public/data/page-data.json` - Education timeline copy
+- ✅ `/public/resume.pdf` - Resume PDF served in the modal
 
 ### New Component Created
 - ✅ `/src/app/components/home/resume-section/index.tsx` - Web-formatted resume
@@ -35,7 +34,7 @@ npm run build
 - 💼 Experience timeline (4 positions)
 - 🎓 Education & Certifications
 - 🚀 Projects showcase
-- 📧 Contact form (joelprakash90@gmail.com)
+- 📧 Contact section powered by environment-driven email/phone
 - 🔗 Social media links (LinkedIn, GitHub)
 - 📱 Fully responsive design
 - 🌙 Dark blue theme (#1c1339)
@@ -62,7 +61,15 @@ See `DEPLOYMENT.md` for detailed instructions
 Replace: `/public/resume.pdf`
 
 ### Update Contact Info
-Edit: `/public/data/page-data.json`
+Set environment variables in `.env.local`:
+```
+NEXT_PUBLIC_CONTACT_EMAIL=
+NEXT_PUBLIC_CONTACT_PHONE_DISPLAY=
+NEXT_PUBLIC_CONTACT_PHONE_DIAL=
+NEXT_PUBLIC_CONTACT_LOCATION=
+NEXT_PUBLIC_LINKEDIN_URL=
+NEXT_PUBLIC_GITHUB_URL=
+```
 
 ### Update Projects
 Edit: `/public/data/work-data.json`
@@ -81,9 +88,7 @@ Add: `/public/social-preview.png` (1200x630px)
 
 ## 📧 Contact Form
 
-Configured to send to: `joelprakash90@gmail.com`
-
-Update in: `/src/app/components/home/contact/index.tsx`
+Uses env variables declared above; adjust copy in `/src/app/components/home/contact/index.tsx` if needed.
 
 ## 🎯 SEO Tags
 

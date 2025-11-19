@@ -1,58 +1,94 @@
 "use client";
 
+import { personalInfo } from "@/app/config/personal-info";
+import { FiGithub, FiLinkedin, FiMail, FiPhone } from "react-icons/fi";
+
+type ContactMethod = {
+  label: string;
+  value: string;
+  href: string;
+  icon: typeof FiMail;
+};
+
+const { email, phoneDial, phoneDisplay, linkedinUrl, githubUrl } = personalInfo;
+
+const contactMethods: ContactMethod[] = [
+  email && {
+    label: "Email",
+    value: email,
+    href: `mailto:${email}`,
+    icon: FiMail,
+  },
+  phoneDial &&
+    phoneDisplay && {
+      label: "Phone",
+      value: phoneDisplay,
+      href: `tel:${phoneDial}`,
+      icon: FiPhone,
+    },
+  linkedinUrl && {
+    label: "LinkedIn",
+    value: linkedinUrl.replace(/^https?:\/\/(www\.)?linkedin\.com/i, "").replace(/\/+$/, ""),
+    href: linkedinUrl,
+    icon: FiLinkedin,
+  },
+].filter((method): method is ContactMethod => Boolean(method));
+
 const Contact = () => {
   return (
-    <section id="contact" className="no-print bg-gradient-to-br from-primary/5 to-blue-100 py-16 md:py-32">
+    <section id="contact" className="py-16 sm:py-24 lg:py-28">
       <div className="container">
-        <div className="pt-8 pb-8">
-          <div className="flex items-center justify-between gap-2 border-b-2 border-primary pb-7 mb-9 md:mb-16">
-            <h2>Get In Touch</h2>
+        <div className="rounded-[28px] sm:rounded-[36px] lg:rounded-[40px] border border-white/80 bg-white/95 p-6 sm:p-8 lg:p-12 shadow-floating">
+          <div className="max-w-3xl space-y-3 sm:space-y-4">
+            <p className="eyebrow text-secondary/70">Reach out</p>
+            <h2>Want my resume or a quick chat? I&apos;m easy to reach.</h2>
+            <p className="text-base sm:text-lg">
+              Email, text, or connect on LinkedIn and I&apos;ll respond as soon as I step away from class or the code editor.
+              Happy to share more about my internships, projects, or availability.
+            </p>
           </div>
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="space-y-8 py-12">
-              <p className="text-base sm:text-lg md:text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
-                Feel free to reach out through email or phone. I'm always open to discussing new opportunities and interesting projects.
-              </p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 justify-items-center pt-8 max-w-4xl mx-auto">
-                <div className="flex flex-col items-center gap-3 w-full max-w-xs">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-semibold">Email</h3>
-                  <a href="mailto:joelprakash90@gmail.com" className="text-xs sm:text-sm md:text-base lg:text-lg text-primary hover:underline break-all text-center">
-                    joelprakash90@gmail.com
-                  </a>
-                </div>
 
-                <div className="flex flex-col items-center gap-3 w-full max-w-xs">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-semibold">Phone</h3>
-                  <a href="tel:+14692575506" className="text-xs sm:text-sm md:text-base lg:text-lg text-primary hover:underline">
-                    (469) 257-5506
-                  </a>
+          <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-3">
+            {contactMethods.map(({ label, value, href, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="rounded-2xl sm:rounded-3xl border border-primary/10 bg-shell/60 p-4 sm:p-5 transition-transform hover:-translate-y-1"
+              >
+                <div className="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl sm:rounded-2xl bg-white text-primary shadow-soft mb-3 sm:mb-4">
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
+                <p className="text-[0.65rem] sm:text-sm uppercase tracking-[0.35em] sm:tracking-[0.4em] text-secondary/70 font-semibold">{label}</p>
+                <p className="mt-1.5 sm:mt-2 text-base sm:text-lg font-semibold text-primary break-all">{value}</p>
+              </a>
+            ))}
+          </div>
 
-                <div className="flex flex-col items-center gap-3 w-full max-w-xs col-span-2 md:col-span-1">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                  </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-semibold">LinkedIn</h3>
-                  <a href="https://www.linkedin.com/in/joelprakash-/" target="_blank" rel="noopener noreferrer" className="text-xs sm:text-sm md:text-base lg:text-lg text-primary hover:underline">
-                    /in/joelprakash-
-                  </a>
-                </div>
-              </div>
+          {(email || githubUrl) && (
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+              {email && (
+                <a
+                  href={`mailto:${email}`}
+                  className="inline-flex items-center justify-center rounded-full bg-primary text-white px-6 py-3.5 text-base font-semibold transition-transform hover:-translate-y-0.5 min-h-[48px]"
+                >
+                  Email Joel directly
+                </a>
+              )}
+              {githubUrl && (
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-primary/10 px-5 py-3.5 text-sm font-semibold text-secondary hover:text-primary min-h-[48px]"
+                >
+                  <FiGithub className="h-4 w-4" />
+                  GitHub profile
+                </a>
+              )}
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

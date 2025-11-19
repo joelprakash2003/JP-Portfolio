@@ -1,76 +1,133 @@
 "use client";
-import { getImgPath } from "@/utils/image";
+
 import Image from "next/image";
 import { useState } from "react";
+import { getImgPath } from "@/utils/image";
 import ResumeModal from "../resume-modal";
 
-const index = () => {
+const focusAreas = [
+  "Cybersecurity track @ UTD",
+  "Frontend product work",
+  "Automation & tooling",
+  "People-first collaborator",
+];
+
+const statHighlights = [
+  { title: "GM Financial", subtitle: "IT services intern · 2025" },
+  { title: "WorshipBuddy", subtitle: "Frontend dev · present" },
+  { title: "Lockheed Martin", subtitle: "ALIS sysadmin intern" },
+];
+
+const heroSignals = [
+  { label: "Current role", value: "Frontend Developer · WorshipBuddy" },
+  { label: "Latest internship", value: "IT Services · GM Financial (Summer 2025)" },
+];
+
+const HeroSection = () => {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const resumeHref = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/resume.pdf`;
 
   return (
     <>
-      <section className="relative hero-section overflow-hidden pt-35 md:pt-40 pb-12 lg:pb-30 xl:pt-52 bg-gradient-to-br from-blue-950 to-blue-900">
+      <section className="relative hero-section isolate overflow-hidden bg-gradient-to-b from-shell via-cloud to-peach/30">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute -top-40 -left-12 h-64 w-64 sm:h-96 sm:w-96 rounded-full bg-lilac blur-3xl opacity-60" />
+          <div className="absolute top-16 right-0 h-64 w-64 sm:h-[28rem] sm:w-[28rem] rounded-full bg-mint blur-3xl opacity-70" />
+          <div className="absolute bottom-0 left-1/4 h-48 w-48 sm:h-72 sm:w-72 rounded-full bg-peach blur-3xl opacity-60" />
+        </div>
+
         <div className="container">
-          <div className="lg:flex grid grid-cols-1 sm:grid-cols-2 gap-7 md:gap-4 items-center">
-            <div className="flex flex-col gap-4 md:gap-7 max-w-2xl">
-              <div>
-                <div className="flex flex-col gap-4 mb-6">
-                  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl xl:text-6xl leading-tight">
-                    <span className="block">Hey,</span>
-                    <span className="block">I'm Joel Prakash <span className="wave">👋</span></span>
-                  </h1>
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl xl:text-4xl text-white font-light mb-6">Aspiring Cybersecurity Analyst | Frontend Developer</h2>
-              </div>
-              <p className="text-white font-normal max-w-md xl:max-w-xl text-base sm:text-lg opacity-90 leading-relaxed">
-                I love building things that matter - from secure systems that protect data to user-friendly interfaces that make technology accessible. Take a look at some of my recent work and let's connect!
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.15fr_0.95fr] pt-24 sm:pt-32 pb-12 sm:pb-16 lg:pb-24">
+            <div className="space-y-5 sm:space-y-7 max-w-2xl">
+              <p className="eyebrow text-secondary/80">Joel Prakash · Cybersecurity + Frontend</p>
+              <h1>
+                Hi, I&apos;m Joel — part security, part design… all powered by too much coffee.
+                <span className="ml-2 inline-block align-middle text-5xl sm:text-6xl animate-bounce" role="img" aria-label="cartoon coffee mug" style={{ animationDuration: "2.4s" }}>
+                  ☕️
+                </span>
+              </h1>
+              <p className="text-lg text-secondary">
+                I&apos;ve worked across enterprise IT and various technical projects, with a focus on reliability, clarity, and supporting users through
+                well-designed systems.
               </p>
-              <div className="flex flex-wrap gap-3 sm:gap-4 mt-6">
-                <button 
+
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
+                <button
                   onClick={() => setIsResumeModalOpen(true)}
-                  className="relative overflow-hidden cursor-pointer w-full sm:w-fit py-2.5 sm:py-3 px-5 sm:px-6 border-2 border-white rounded-full group bg-white hover:bg-transparent transition-all duration-300 text-center"
+                  className="inline-flex items-center justify-center rounded-full bg-primary text-white px-6 py-3.5 text-base font-semibold shadow-soft transition-transform hover:-translate-y-0.5 hover:bg-primary/90 min-h-[44px]"
                 >
-                  <span className="relative z-10 text-base sm:text-lg font-medium text-primary group-hover:text-white transition-colors duration-300">
-                    View Resume
-                  </span>
+                  View resume
                 </button>
-                <a 
-                  href="/resume.pdf" 
+
+                <a
+                  href={resumeHref}
                   download="Joel-Prakash-Resume.pdf"
-                  className="relative overflow-hidden cursor-pointer w-full sm:w-fit py-2.5 sm:py-3 px-5 sm:px-6 border-2 border-white rounded-full group hover:bg-white transition-colors duration-300 text-center"
+                  className="inline-flex items-center justify-center rounded-full border border-primary/20 bg-white/70 px-6 py-3.5 text-base font-semibold text-primary backdrop-blur hover:border-primary hover:-translate-y-0.5 transition-transform min-h-[44px]"
                 >
-                  <span className="relative z-10 text-base sm:text-lg font-medium text-white group-hover:text-primary transition-colors duration-300">
-                    Download PDF
-                  </span>
+                  Download PDF
+                </a>
+
+                <a href="#experience" className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent px-4 py-3.5 text-sm font-semibold text-secondary hover:text-primary min-h-[44px]">
+                  Browse experience →
                 </a>
               </div>
+
+              <div className="flex flex-wrap gap-2 pt-3">
+                {focusAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="rounded-full bg-white/70 border border-white/60 px-4 py-2 text-sm font-semibold text-secondary backdrop-blur-sm"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
             </div>
-            <Image
-              src={getImgPath("/images/home/banner/image-19.jpeg")}
-              alt="Joel Prakash"
-              width={685}
-              height={650}
-              className="block lg:hidden"
-            />
+
+            <div className="space-y-5 sm:space-y-6">
+              <div className="rounded-[32px] sm:rounded-[38px] border border-white/70 bg-white/85 backdrop-blur-2xl shadow-floating p-5 sm:p-6 lg:p-8">
+                <div className="overflow-hidden rounded-[24px] sm:rounded-[32px] bg-lilac/40">
+                  <Image
+                    src={getImgPath("/images/home/banner/image-19.jpeg")}
+                    alt="Joel Prakash"
+                    width={640}
+                    height={720}
+                    priority
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
+                <div className="mt-5 sm:mt-6 grid gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl bg-haze/80 p-4 sm:p-5 border border-white/70">
+                  {heroSignals.map((signal) => (
+                    <div key={signal.label} className="flex flex-col gap-1">
+                      <span className="text-xs uppercase tracking-[0.45em] text-secondary/70 font-semibold">
+                        {signal.label}
+                      </span>
+                      <span className="text-sm sm:text-base font-semibold text-primary">{signal.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                {statHighlights.map((stat) => (
+                  <div
+                    key={stat.title}
+                    className="rounded-2xl sm:rounded-3xl border border-white/70 bg-white/85 p-4 sm:p-5 shadow-soft backdrop-blur text-left"
+                  >
+                    <p className="text-base sm:text-lg font-semibold text-primary">{stat.title}</p>
+                    <p className="text-xs sm:text-sm text-secondary leading-snug">{stat.subtitle}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="absolute right-0 top-0 hidden h-auto w-1/2 lg:block 2xl:h-171.5 2xl:w-187.5">
-          <Image
-            src={getImgPath("/images/home/banner/image-19.jpeg")}
-            alt="Joel Prakash"
-            width={685}
-            height={650}
-            className=" absolute right-0 top-0 z-1"
-          />
         </div>
       </section>
 
-      <ResumeModal 
-        isOpen={isResumeModalOpen} 
-        onClose={() => setIsResumeModalOpen(false)} 
-      />
+      <ResumeModal isOpen={isResumeModalOpen} onClose={() => setIsResumeModalOpen(false)} />
     </>
   );
 };
 
-export default index;
+export default HeroSection;

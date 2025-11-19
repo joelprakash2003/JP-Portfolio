@@ -1,79 +1,83 @@
 "use client";
-import { getImgPath } from "@/utils/image";
-import Image from "next/image";
+
 import { AnimateSection } from "../animate-section";
+
+const summaryPoints = [
+  {
+    title: "Professional summary",
+    description:
+      "UT Dallas senior (CIS + Cybersecurity) graduating December 2025. Recent GM Financial intern and current WorshipBuddy frontend developer.",
+  },
+  {
+    title: "How I help",
+    description:
+      "Ensure systems are reliable while keeping UI work clean—comfortable jumping between tickets, docs, and screens.",
+  },
+  {
+    title: "Clearance & clubs",
+    description: "Secret clearance · Cybersecurity Club + UTD CSG member.",
+  },
+];
+
+const quickFacts = [
+  { label: "Focus", value: "Cybersecurity + Frontend" },
+  { label: "Availability", value: "Entry level Cyber or IT roles" },
+  { label: "Tools", value: "React · Next.js · AWS · ServiceNow" },
+];
+
+const funStuff = ["⚽ Soccer", "✈️ Travel", "📸 Photography", "🍜 Food hunts", "🎮 Home lab tinkering"];
 
 const AboutMe = () => {
   return (
-    <section id="about">
-      <div className="relative bg-gradient-to-br from-gray-50 to-blue-50 py-10 md:py-32">
-        <div className="absolute top-0 w-full px-9">
-          <Image
-            src={getImgPath("/images/home/about-me/resume-bg-img.svg")}
-            alt="resume-bg-img"
-            width={1200}
-            height={348}
-            className="w-full"
-          />
-        </div>
+    <section id="about" className="relative isolate py-16 sm:py-20 lg:py-28">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-cloud/60 to-shell" />
+      <div className="container space-y-8 sm:space-y-10">
+        <AnimateSection>
+          <div className="max-w-3xl space-y-3 sm:space-y-4">
+            <p className="eyebrow">About</p>
+            <h2>Who I am in one glance.</h2>
+            <p className="text-base sm:text-lg">
+              Friendly teammate, detail-driven problem solver, and soon-to-graduate CIS student ready for roles in cybersecurity and IT operations.
+            </p>
+          </div>
+        </AnimateSection>
 
-        <div className="relative z-10">
-          <div className="container">
-            <AnimateSection>
-              <div className="flex items-center justify-between gap-2 border-b-2 border-primary pb-7 mb-8">
-                <h2 className="text-4xl md:text-5xl font-bold">About Me</h2>
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
+          <AnimateSection>
+            <article className="rounded-[24px] sm:rounded-[32px] border border-white/75 bg-white/90 p-5 sm:p-7 lg:p-8 shadow-floating backdrop-blur space-y-4 sm:space-y-5 h-full">
+              {summaryPoints.map((item) => (
+                <div key={item.title} className="space-y-2">
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              ))}
+            </article>
+          </AnimateSection>
+
+          <div className="space-y-5 sm:space-y-6">
+            <AnimateSection delay={0.1}>
+              <div className="rounded-[24px] sm:rounded-[32px] border border-white/80 bg-white/90 p-5 sm:p-6 shadow-soft space-y-3 sm:space-y-4">
+                <h3 className="text-lg sm:text-xl font-semibold">Quick facts</h3>
+                <div className="grid gap-2 sm:gap-3 grid-cols-1 sm:grid-cols-3">
+                  {quickFacts.map((fact) => (
+                    <div key={fact.label} className="rounded-xl sm:rounded-2xl bg-shell/60 px-3 sm:px-4 py-2.5 sm:py-3">
+                      <p className="text-[0.65rem] sm:text-xs uppercase tracking-[0.35em] sm:tracking-[0.4em] text-secondary/70">{fact.label}</p>
+                      <p className="text-xs sm:text-sm font-semibold text-primary leading-tight mt-1">{fact.value}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </AnimateSection>
 
             <AnimateSection delay={0.2}>
-              <div className="pt-10 xl:pt-16 flex flex-col lg:flex-row gap-10 items-start">
-                {/* Left: Description */}
-                <div className="w-full lg:w-1/2" id="about-me">
-                  <p className="text-lg md:text-xl leading-relaxed text-gray-700">
-                    I'm a senior at The University of Texas at Dallas pursuing my Bachelor's in Computer Information Systems and Technology with a track in Cybersecurity and Data Analytics. I'm passionate about exploring the latest innovations in IT, from system administration to network security. My goal is to contribute to the world of technology through secure, efficient, and user-friendly solutions.
-                  </p>
-                </div>
-
-                {/* Right: Stats and Hobbies */}
-                <div className="w-full lg:w-1/2 space-y-8">
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-5">
-                    {[
-                      { count: "3+", label: "Years of experience" },
-                      { count: "4", label: "Major Projects" },
-                      { count: "100+", label: "Users supported" },
-                    ].map((item, i) => (
-                      <div key={i} className="text-center">
-                        <h3 className="text-3xl md:text-4xl font-bold text-primary">{item.count}</h3>
-                        <p className="text-sm md:text-base text-gray-600 mt-2">
-                          {item.label}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Hobbies */}
-                  <div>
-                    <h3 className="text-xl xl:text-2xl font-semibold text-gray-800 mb-4">Hobbies & Interests</h3>
-                    <div className="flex flex-wrap gap-2 md:gap-3">
-                      {[
-                        { name: "⚽ Soccer" },
-                        { name: "✈️ Travel" },
-                        { name: "📸 Photography" },
-                        { name: "🍜 Foodie" },
-                        { name: "🎨 Graphic Design" }
-                      ].map((hobby) => (
-                        <div
-                          key={hobby.name}
-                          className="group cursor-default"
-                        >
-                          <p className="bg-white py-3 md:py-4 px-4 md:px-5 rounded-full text-sm md:text-base xl:text-lg font-medium shadow-md hover:shadow-xl hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
-                            {hobby.name}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+              <div className="rounded-[24px] sm:rounded-[32px] border border-white/80 bg-white/90 p-5 sm:p-6 shadow-soft flex flex-col h-full">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Fun stuff</h3>
+                <div className="flex flex-wrap gap-2 flex-grow items-start content-start">
+                  {funStuff.map((item) => (
+                    <span key={item} className="rounded-full border border-primary/10 bg-shell px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-primary">
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
             </AnimateSection>

@@ -1,58 +1,65 @@
 "use client";
+
 import { AnimateSection } from "../animate-section";
-import { FaGraduationCap, FaCertificate, FaBriefcase, FaCode } from "react-icons/fa";
+import { FaBriefcase, FaCertificate, FaCode, FaGraduationCap } from "react-icons/fa";
+
+const goals = [
+  {
+    icon: FaGraduationCap,
+    title: "Graduate + launch grad school",
+    description: "Finish my CIS degree at UTD this December and roll into a cybersecurity-focused master’s program in January.",
+    accent: "from-lilac/60 to-haze/70",
+  },
+  {
+    icon: FaCertificate,
+    title: "Earn Security+ & Network+",
+    description: "Deepen my security foundation and pair it with practical automation projects across identity, network, and cloud.",
+    accent: "from-mint/70 to-peach/60",
+  },
+  {
+    icon: FaBriefcase,
+    title: "Secure a cyber role I love",
+    description: "Join a team where I can blend SecOps instincts with frontend craft to ship safer internal tools and customer experiences.",
+    accent: "from-peach/70 to-amber/60",
+  },
+  {
+    icon: FaCode,
+    title: "Contribute to open-source",
+    description: "Build lightweight security tooling, dashboards, and components that empower small teams to act like big ones.",
+    accent: "from-haze/70 to-lilac/60",
+  },
+];
 
 const Goals = () => {
-  const goals = [
-    {
-      icon: <FaGraduationCap className="w-16 h-16" />,
-      title: "Graduate & Continue Education",
-      description: "Complete my Bachelor's in Computer Information Systems from UTD in December and begin my Master's program in January",
-      color: "text-blue-600"
-    },
-    {
-      icon: <FaCertificate className="w-16 h-16" />,
-      title: "Security Certifications",
-      description: "Pass the CompTIA Security+ and Network+ certifications to advance my cybersecurity expertise",
-      color: "text-green-600"
-    },
-    {
-      icon: <FaBriefcase className="w-16 h-16" />,
-      title: "Land Cybersecurity Role",
-      description: "Secure a full-time position as a Cybersecurity Analyst or Systems Administrator at a leading technology company",
-      color: "text-purple-600"
-    },
-    {
-      icon: <FaCode className="w-16 h-16" />,
-      title: "Build & Contribute",
-      description: "Develop open-source security tools and contribute to cybersecurity projects that make a real impact",
-      color: "text-orange-600"
-    }
-  ];
-
   return (
-    <section id="goals" className="py-16 md:py-32 bg-white">
-      <div className="container">
+    <section id="goals" className="py-16 sm:py-24 lg:py-28">
+      <div className="container space-y-8 sm:space-y-10">
         <AnimateSection>
-          <div className="flex items-center justify-between gap-2 border-b-2 border-primary pb-7 mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold">My Goals</h2>
+          <div className="flex flex-col gap-3 sm:gap-4 max-w-3xl">
+            <p className="eyebrow">Momentum</p>
+            <h2>What I&apos;m building toward next.</h2>
+            <p className="text-base sm:text-lg">
+              Each milestone keeps me balanced between learning, applying, and sharing. It&apos;s how I stay curious while
+              moving fast.
+            </p>
           </div>
         </AnimateSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          {goals.map((goal, index) => (
-            <AnimateSection key={index} delay={index * 0.1}>
-              <div className="flex flex-col items-center text-center p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-blue-50 hover:shadow-xl transition-all duration-300 group">
-                <div className={`${goal.color} mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
-                    {goal.icon}
+        <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
+          {goals.map((goal, index) => {
+            const Icon = goal.icon;
+            return (
+              <AnimateSection key={goal.title} delay={index * 0.08}>
+                <div className={`rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] bg-gradient-to-br ${goal.accent} border border-white/60 p-5 sm:p-6 lg:p-8 shadow-soft`}>
+                  <div className="inline-flex h-10 w-10 sm:h-11 sm:w-11 lg:h-12 lg:w-12 items-center justify-center rounded-xl sm:rounded-2xl bg-white text-primary shadow-soft mb-3 sm:mb-4">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">{goal.title}</h3>
+                  <p className="text-sm sm:text-base leading-relaxed">{goal.description}</p>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">{goal.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{goal.description}</p>
-              </div>
-            </AnimateSection>
-          ))}
+              </AnimateSection>
+            );
+          })}
         </div>
       </div>
     </section>
