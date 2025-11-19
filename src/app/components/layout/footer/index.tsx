@@ -12,10 +12,13 @@ const footerLinks = [
 const Footer = () => {
   const resumeHref = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/resume.pdf`;
   const { email, phoneDisplay, phoneDial, linkedinUrl, githubUrl } = personalInfo;
-  const socialLinks = [
-    linkedinUrl ? { label: "LinkedIn", href: linkedinUrl } : null,
-    githubUrl ? { label: "GitHub", href: githubUrl } : null,
-  ].filter((link): link is { label: string; href: string } => Boolean(link));
+  const socialLinks: { label: string; href: string }[] = [];
+  if (linkedinUrl) {
+    socialLinks.push({ label: "LinkedIn", href: linkedinUrl });
+  }
+  if (githubUrl) {
+    socialLinks.push({ label: "GitHub", href: githubUrl });
+  }
 
   return (
     <footer className="py-12 sm:py-16 lg:py-20">

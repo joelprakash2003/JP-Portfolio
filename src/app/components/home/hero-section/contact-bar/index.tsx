@@ -13,48 +13,52 @@ type ContactItem = {
 
 const { email, phoneDisplay, phoneDial, location, linkedinUrl, githubUrl } = personalInfo;
 
-const contactItems: ContactItem[] = [
-  email
-    ? {
-        label: "Email",
-        value: email,
-        href: `mailto:${email}`,
-        icon: FiMail,
-      }
-    : null,
-  phoneDisplay && phoneDial
-    ? {
-        label: "Phone",
-        value: phoneDisplay,
-        href: `tel:${phoneDial}`,
-        icon: FiPhone,
-      }
-    : null,
-  location
-    ? {
-        label: "Location",
-        value: location,
-        href: null,
-        icon: FiMapPin,
-      }
-    : null,
-  linkedinUrl
-    ? {
-        label: "LinkedIn",
-        value: linkedinUrl.replace(/^https?:\/\/(www\.)?linkedin\.com/i, "").replace(/\/+$/, ""),
-        href: linkedinUrl,
-        icon: FiLinkedin,
-      }
-    : null,
-  githubUrl
-    ? {
-        label: "GitHub",
-        value: githubUrl.replace(/^https?:\/\/(www\.)?github\.com\//i, "github.com/"),
-        href: githubUrl,
-        icon: FiGithub,
-      }
-    : null,
-].filter((item): item is ContactItem => Boolean(item));
+const contactItems: ContactItem[] = [];
+
+if (email) {
+  contactItems.push({
+    label: "Email",
+    value: email,
+    href: `mailto:${email}`,
+    icon: FiMail,
+  });
+}
+
+if (phoneDisplay && phoneDial) {
+  contactItems.push({
+    label: "Phone",
+    value: phoneDisplay,
+    href: `tel:${phoneDial}`,
+    icon: FiPhone,
+  });
+}
+
+if (location) {
+  contactItems.push({
+    label: "Location",
+    value: location,
+    href: null,
+    icon: FiMapPin,
+  });
+}
+
+if (linkedinUrl) {
+  contactItems.push({
+    label: "LinkedIn",
+    value: linkedinUrl.replace(/^https?:\/\/(www\.)?linkedin\.com/i, "").replace(/\/+$/, ""),
+    href: linkedinUrl,
+    icon: FiLinkedin,
+  });
+}
+
+if (githubUrl) {
+  contactItems.push({
+    label: "GitHub",
+    value: githubUrl.replace(/^https?:\/\/(www\.)?github\.com\//i, "github.com/"),
+    href: githubUrl,
+    icon: FiGithub,
+  });
+}
 
 const ContactBar = () => {
   return (
