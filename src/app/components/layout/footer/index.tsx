@@ -13,8 +13,8 @@ const Footer = () => {
   const resumeHref = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/resume.pdf`;
   const { email, phoneDisplay, phoneDial, linkedinUrl, githubUrl } = personalInfo;
   const socialLinks = [
-    linkedinUrl && { label: "LinkedIn", href: linkedinUrl },
-    githubUrl && { label: "GitHub", href: githubUrl },
+    linkedinUrl ? { label: "LinkedIn", href: linkedinUrl } : null,
+    githubUrl ? { label: "GitHub", href: githubUrl } : null,
   ].filter((link): link is { label: string; href: string } => Boolean(link));
 
   return (

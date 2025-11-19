@@ -13,25 +13,30 @@ type ContactMethod = {
 const { email, phoneDial, phoneDisplay, linkedinUrl, githubUrl } = personalInfo;
 
 const contactMethods: ContactMethod[] = [
-  email && {
-    label: "Email",
-    value: email,
-    href: `mailto:${email}`,
-    icon: FiMail,
-  },
-  phoneDial &&
-    phoneDisplay && {
-      label: "Phone",
-      value: phoneDisplay,
-      href: `tel:${phoneDial}`,
-      icon: FiPhone,
-    },
-  linkedinUrl && {
-    label: "LinkedIn",
-    value: linkedinUrl.replace(/^https?:\/\/(www\.)?linkedin\.com/i, "").replace(/\/+$/, ""),
-    href: linkedinUrl,
-    icon: FiLinkedin,
-  },
+  email
+    ? {
+        label: "Email",
+        value: email,
+        href: `mailto:${email}`,
+        icon: FiMail,
+      }
+    : null,
+  phoneDial && phoneDisplay
+    ? {
+        label: "Phone",
+        value: phoneDisplay,
+        href: `tel:${phoneDial}`,
+        icon: FiPhone,
+      }
+    : null,
+  linkedinUrl
+    ? {
+        label: "LinkedIn",
+        value: linkedinUrl.replace(/^https?:\/\/(www\.)?linkedin\.com/i, "").replace(/\/+$/, ""),
+        href: linkedinUrl,
+        icon: FiLinkedin,
+      }
+    : null,
 ].filter((method): method is ContactMethod => Boolean(method));
 
 const Contact = () => {

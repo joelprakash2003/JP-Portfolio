@@ -14,37 +14,46 @@ type ContactItem = {
 const { email, phoneDisplay, phoneDial, location, linkedinUrl, githubUrl } = personalInfo;
 
 const contactItems: ContactItem[] = [
-  email && {
-    label: "Email",
-    value: email,
-    href: `mailto:${email}`,
-    icon: FiMail,
-  },
-  phoneDisplay &&
-    phoneDial && {
-      label: "Phone",
-      value: phoneDisplay,
-      href: `tel:${phoneDial}`,
-      icon: FiPhone,
-    },
-  location && {
-    label: "Location",
-    value: location,
-    href: null,
-    icon: FiMapPin,
-  },
-  linkedinUrl && {
-    label: "LinkedIn",
-    value: linkedinUrl.replace(/^https?:\/\/(www\.)?linkedin\.com/i, "").replace(/\/+$/, ""),
-    href: linkedinUrl,
-    icon: FiLinkedin,
-  },
-  githubUrl && {
-    label: "GitHub",
-    value: githubUrl.replace(/^https?:\/\/(www\.)?github\.com\//i, "github.com/"),
-    href: githubUrl,
-    icon: FiGithub,
-  },
+  email
+    ? {
+        label: "Email",
+        value: email,
+        href: `mailto:${email}`,
+        icon: FiMail,
+      }
+    : null,
+  phoneDisplay && phoneDial
+    ? {
+        label: "Phone",
+        value: phoneDisplay,
+        href: `tel:${phoneDial}`,
+        icon: FiPhone,
+      }
+    : null,
+  location
+    ? {
+        label: "Location",
+        value: location,
+        href: null,
+        icon: FiMapPin,
+      }
+    : null,
+  linkedinUrl
+    ? {
+        label: "LinkedIn",
+        value: linkedinUrl.replace(/^https?:\/\/(www\.)?linkedin\.com/i, "").replace(/\/+$/, ""),
+        href: linkedinUrl,
+        icon: FiLinkedin,
+      }
+    : null,
+  githubUrl
+    ? {
+        label: "GitHub",
+        value: githubUrl.replace(/^https?:\/\/(www\.)?github\.com\//i, "github.com/"),
+        href: githubUrl,
+        icon: FiGithub,
+      }
+    : null,
 ].filter((item): item is ContactItem => Boolean(item));
 
 const ContactBar = () => {
